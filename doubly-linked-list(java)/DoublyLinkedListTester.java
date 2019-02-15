@@ -71,6 +71,8 @@ public class DoublyLinkedListTester {
 		int removed = list.removeFromFront();
 		assertEquals("testRemoveFront: check if element removed from front", 5, removed);
 		assertEquals("testRemoveFront: check if size decreased", 3, list.size());
+		int first = list.get(0);
+		assertEquals("testRemoveFront: check if next element moved up", 10, first);
 	}
 	
 	@Test
@@ -78,6 +80,8 @@ public class DoublyLinkedListTester {
 		int removed = list.removeFromEnd();
 		assertEquals("testRemoveEnd: check if element removed from end", 20, removed);
 		assertEquals("testRemoveEnd: check if size decreased", 3, list.size());
+		int last = list.get(list.size()-1);
+		assertEquals("testRemoveFront: check if next element moved down", 15, last);
 	}
 	
 	@Test
@@ -92,8 +96,8 @@ public class DoublyLinkedListTester {
 			fail("Out Of Bounds");
 		} catch(IndexOutOfBoundsException e) {}
 		
-		int removed = list.removeFromIndex(3);
-		assertEquals("testRemoveEnd: check if element removed from end", 20, removed);
+		int removed = list.removeFromIndex(2);
+		assertEquals("testRemoveEnd: check if element removed from end", 15, removed);
 		assertEquals("testRemoveEnd: check if size decreased", 3, list.size());
 	}
 

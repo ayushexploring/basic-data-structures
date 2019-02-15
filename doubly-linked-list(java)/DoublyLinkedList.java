@@ -44,6 +44,12 @@ public class DoublyLinkedList<E> {
 		if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Out Of Bounds");
 		}
+		if(index == 0) {
+			addAtFront(data);
+		}
+		if(index == size - 1) {
+			addAtEnd(data);
+		}
 		ListNode<E> node = head;
 		for (int i = 0; i < index; i++) {
 			node = node.next;
@@ -58,18 +64,14 @@ public class DoublyLinkedList<E> {
 	
 	public E removeFromFront() {
 		ListNode<E> retData = head.next;
-		head.next = head.next.next;
-		head.data = null;
-		head.prev = null;
+		head = head.next;
 		size--;
 		return retData.data;
 	}
 	
 	public E removeFromEnd() {
 		ListNode<E> retData = tail.prev;
-		tail.prev = tail.prev.prev;
-		tail.data = null;
-		tail.next = null;
+		tail = tail.prev;		
 		size--;
 		return retData.data;
 	}
@@ -77,6 +79,12 @@ public class DoublyLinkedList<E> {
 	public E removeFromIndex(int index) {	
 		if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Out Of Bounds");
+		}
+		if(index == 0) {
+			return removeFromFront();
+		}
+		if(index == size - 1) {
+			return removeFromEnd();
 		}
 		ListNode<E> node = head;
 		for (int i = 0; i <= index; i++) {
